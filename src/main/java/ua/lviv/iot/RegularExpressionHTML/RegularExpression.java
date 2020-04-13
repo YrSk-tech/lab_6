@@ -9,10 +9,9 @@ import java.util.regex.Pattern;
 public class RegularExpression {
     public List<String> list = new LinkedList<>();
 
-    public static void text(List<String> stringList) {
-        String htmltext = "<html><body><strong>by Sun Microsystems "
-                + "</strong>BUG<span> by Sun Microsystems 1990s.</span>"
-                + "<table>was developed</table><span>The Java programming language</span></body></html>";
+
+    public static List<String> text(String html) {
+        String htmltext = html;
         List<String> list = new LinkedList<>();
         List<List<String>> listPaterns = new LinkedList<>();
         listPaterns.add(new LinkedList<>());
@@ -32,14 +31,13 @@ public class RegularExpression {
             while (matcherVar.find()) {
                 String varText = htmltext.substring(matcherVar.start(), matcherVar.end());
                 String varSubstring = varText.substring(var.get(0).length(), varText.length() - var.get(1).length());
-
+               
                 list.add(varSubstring);
 
+                
             }
         }
         Collections.sort(list);
-        stringList = list;
-        System.out.println(stringList);
-
+        return list;
     }
 }
